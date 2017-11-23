@@ -35,6 +35,9 @@ const b1 = Bouture.button({
   onceMousedown: e => console.log('mousedown', e),
 })
 
+// Custom Element
+const ce = Bouture('custom-element', Bouture('paper-badge', {label: '3'}))
+
 // append to actual DOM
 document.body.append(h1.element);
 ````
