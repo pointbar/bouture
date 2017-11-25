@@ -1,7 +1,8 @@
 # Bouture
 
-A thin wrapper around DOM APIs to create DOM branches to be appended
-Inspirations: jQuery, voyeur.js
+A thin wrapper around DOM APIs to create DOM branches to be appended.
+
+Inspirations: [jQuery](https://api.jquery.com/), [voyeur.js](http://adriancooney.ie/voyeur.js/), [React.createElement](https://reactjs.org/docs/react-api.html#createelement)
 
 This lib provides an API to create easily DOM branches to be appended. Only creation is supported, not removing, no tranversal, no edition. Creation is the only thing you need when you adhere to the React discipline.
 
