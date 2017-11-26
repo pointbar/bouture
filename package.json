@@ -4,7 +4,7 @@
   "description": "A thin wrapper around DOM APIs to create DOM branches to be appended ",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
