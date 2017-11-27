@@ -1,9 +1,10 @@
-"use strict";
+/* global describe it */
+/* eslint-disable no-unused-expressions */
 
-const expect = require('chai').expect;
+const expect = require('chai').expect
 
-describe('isParisMuseum', function () {
-    it('should return false', function () {
-        expect(false).to.be.false;
-    });
-});
+describe('isParisMuseum', () => {
+  it('should return false', () => {
+    expect(false).to.be.false
+  })
+})
