@@ -1,2 +1,1 @@
-const Bouture = {}
-Bouture()
+export default () => {}
