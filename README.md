@@ -13,7 +13,7 @@ This lib provides an API to create easily DOM branches to be appended. Only crea
 const div = Bouture.div;
 
 // With text
-//const h1 = Bouture.h1('Best lib of all times');
+const divWithText = Bouture.div('Best lib of all times');
 
 // Attribute
 //const input = Bouture.input({type: 'tel'});
@@ -40,5 +40,5 @@ const div = Bouture.div;
 //const ce = Bouture('custom-element', Bouture('paper-badge', {label: '3'}))
 
 // append to actual DOM
-document.body.append(h1.getElement());
+document.body.append(divWithText.getElement());
 ````
