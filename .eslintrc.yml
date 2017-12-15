@@ -6,3 +6,4 @@ overrides:
     no-unused-expressions: off
   env:
     mocha: true
+    browser: true
