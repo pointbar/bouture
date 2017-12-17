@@ -4,6 +4,7 @@ import Bouture from '../bouture.js'
 describe('Bouture.div', () => {
   it('should create an object', () => {
     const b = Bouture.div
+
     expect(Object(b)).to.equal(b)
   })
   it('should create a new element on each access', () => {
@@ -14,6 +15,16 @@ describe('Bouture.div', () => {
 describe('Bouture.div.getElement()', () => {
   it('should return an actual DOM node', () => {
     const b = Bouture.div.getElement()
+
     expect(b).to.be.an.instanceof(HTMLElement)
+  })
+})
+
+describe(`Bouture.div('yo')`, () => {
+  it(`should create a div with text 'yo'`, () => {
+    const bdiv = Bouture.div('yo')
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('yo')
   })
 })
