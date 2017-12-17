@@ -22,9 +22,9 @@ describe('Bouture.div.getElement()', () => {
 
 describe(`Bouture.div('yo')`, () => {
   it(`should create a div with text 'yo'`, () => {
-    const div = Bouture.div('yo')
+    const bdiv = Bouture.div('yo')
 
-    expect(div.getElement()).to.be.an.instanceof(HTMLElement)
-    expect(div.getElement().textContent).to.equal('yo')
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('yo')
   })
 })
