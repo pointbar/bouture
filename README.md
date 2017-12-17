@@ -43,3 +43,10 @@ const h2 = Bouture.h2('subheading');
 // append to actual DOM
 document.body.append(h1.getElement());
 ````
+
+## Cross-cutting concerns
+
+- Any usage that is not documented should throw or return undefined
+- Browser compatibility: Edge
+
+
