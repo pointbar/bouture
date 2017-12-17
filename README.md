@@ -14,7 +14,7 @@ const div = Bouture.div;
 
 // With text
 const h1 = Bouture.h1('Best lib of all times');
-const h2 = Bouture.h2('subheading');
+const h2 = Bouture.h2('subheading'); 
 
 // Attribute
 //const input = Bouture.input({type: 'tel'});
