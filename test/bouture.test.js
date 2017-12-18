@@ -28,3 +28,27 @@ describe(`Bouture.div('yo')`, () => {
     expect(bdiv.getElement().textContent).to.equal('yo')
   })
 })
+
+describe('Bouture.a', () => {
+  it('should create a <a>', () => {
+    const a = Bouture.a
+
+    expect(a.getElement()).to.be.an.instanceof(HTMLAnchorElement)
+  })
+})
+
+describe('Bouture.h1', () => {
+  it('should create a <h1>', () => {
+    const h1 = Bouture.h1
+
+    expect(h1.getElement()).to.be.an.instanceof(HTMLHeadingElement)
+  })
+})
+
+describe('Bouture.bloublou', () => {
+  it('should return undefined', () => {
+    const bloublou = Bouture.bloublou
+
+    expect(bloublou).to.be.undefined
+  })
+})
