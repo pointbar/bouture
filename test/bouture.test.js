@@ -52,3 +52,56 @@ describe('Bouture.bloublou', () => {
     expect(bloublou).to.be.undefined
   })
 })
+
+describe('Bouture.div({lang: "fr"})', () => {
+  it('should create a div with a lang attribute', () => {
+    const bdiv = Bouture.div({lang: 'fr'})
+
+    expect(bdiv.getElement().getAttribute('lang')).to.equal('fr')
+  })
+})
+
+describe('Bouture.div({hidden: true})', () => {
+  it('should create a div with a hidden attribute set to the empty string', () => {
+    const bdiv = Bouture.div({hidden: true})
+
+    expect(bdiv.getElement().getAttribute('hidden')).to.equal('')
+  })
+})
+
+describe('Bouture.div({hidden: false})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: true})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
+  it('should create a div with a data attribute', () => {
+    const bdiv = Bouture.div({'data-bloublou': 'yoya'})
+
+    expect(bdiv.getElement().getAttribute('data-bloublou')).to.equal('yoya')
+    expect(bdiv.getElement().dataset.bloublou).to.equal('yoya')
+  })
+})
+
+describe(`Bouture.div({class: ['yo', 'ya']})`, () => {
+  it('should create a div with 2 classes', () => {
+    const bdiv = Bouture.div({class: ['yo', 'ya']})
+
+    expect(bdiv.getElement().classList.has('yo')).to.be.true
+    expect(bdiv.getElement().classList.has('ya')).to.be.true
+    expect(bdiv.getElement().classList.length).to.equal(2)
+    expect(bdiv.getElement().getAttribute('class')).to.equal('yo ya')
+  })
+})
+
+describe(`Bouture.div({class: ['yo', undefined]})`, () => {
+  it('should create a div with 1 class', () => {
+    const bdiv = Bouture.div({class: ['yo', undefined]})
+
+    expect(bdiv.getElement().classList.has('yo')).to.be.true
+    expect(bdiv.getElement().classList.length).to.equal(1)
+  })
+})
