@@ -105,3 +105,12 @@ describe(`Bouture.div({class: ['yo', undefined]})`, () => {
     expect(bdiv.getElement().classList.length).to.equal(1)
   })
 })
+
+describe(`Bouture.div({lang: 'en'}, 'to be yourself is all that you can do')`, () => {
+  it('should create a div with an attribute and text as content', () => {
+    const div = Bouture.div({lang: 'en'}, 'to be yourself is all that you can do').getElement()
+
+    expect(div.getAttribute('lang')).to.equal('en')
+    expect(div.textContent).to.equal('to be yourself is all that you can do')
+  })
+})

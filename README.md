@@ -17,13 +17,13 @@ const h1 = Bouture.h1('Best lib of all times');
 const h2 = Bouture.h2('subheading'); 
 
 // Attribute
-//const input = Bouture.input({type: 'tel'});
+const input = Bouture.input({type: 'tel'});
 
 // Classes
-//const multiClassDiv = Bouture.div({class: ['yo', 'ya']})
+const multiClassDiv = Bouture.div({class: ['yo', 'ya']})
 
 // Attribute and text
-//const a = Bouture.a({href: 'https://github.com/DavidBruant/bouture'}, 'bouture.js');
+const a = Bouture.a({href: 'https://github.com/DavidBruant/bouture'}, 'bouture.js');
 
 // Nested creation with one child
 //const table = Bouture.table.tbody.tr;
