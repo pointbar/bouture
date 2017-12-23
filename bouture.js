@@ -5,8 +5,36 @@ tags.forEach(tag => {
   Object.defineProperty(Bouture, tag, {
     get: () => {
       const element = document.createElement(tag)
-      function branche (text) {
-        element.append(text)
+      function branche (...args) {
+        const append = {
+          string: (element, text) => element.append(text),
+          object: (element, attributes) => Object.keys(attributes)
+            .forEach(attribute => {
+              function setAttribute () {
+                return {
+                  boolean: {
+                    true: () => element.setAttribute(attribute, ''),
+                    false: () => element.removeAttribute(attribute)
+                  },
+                  string: {
+                    true: () => element.setAttribute(attribute, attributes[attribute]),
+                    false: () => element.setAttribute(attribute, '')
+                  },
+                  object: {
+                    true: () => attributes[attribute].forEach(each => {
+                      if (each) {
+                        element.classList.add(each)
+                      }
+                    })
+                  }
+                }
+              }
+            setAttribute()
+              [typeof attributes[attribute]]
+              [!!attributes[attribute]]()
+            })
+        }
+        args.forEach(arg => append[typeof arg](element, arg))
         return branche
       }
       branche.getElement = () => {

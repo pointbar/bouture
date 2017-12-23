@@ -71,7 +71,7 @@ describe('Bouture.div({hidden: true})', () => {
 
 describe('Bouture.div({hidden: false})', () => {
   it('should create a div with no hidden attribute', () => {
-    const bdiv = Bouture.div({hidden: true})
+    const bdiv = Bouture.div({hidden: false})
 
     expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
   })
@@ -90,8 +90,8 @@ describe(`Bouture.div({class: ['yo', 'ya']})`, () => {
   it('should create a div with 2 classes', () => {
     const bdiv = Bouture.div({class: ['yo', 'ya']})
 
-    expect(bdiv.getElement().classList.has('yo')).to.be.true
-    expect(bdiv.getElement().classList.has('ya')).to.be.true
+    expect(bdiv.getElement().classList.contains('yo')).to.be.true
+    expect(bdiv.getElement().classList.contains('ya')).to.be.true
     expect(bdiv.getElement().classList.length).to.equal(2)
     expect(bdiv.getElement().getAttribute('class')).to.equal('yo ya')
   })
@@ -101,7 +101,7 @@ describe(`Bouture.div({class: ['yo', undefined]})`, () => {
   it('should create a div with 1 class', () => {
     const bdiv = Bouture.div({class: ['yo', undefined]})
 
-    expect(bdiv.getElement().classList.has('yo')).to.be.true
+    expect(bdiv.getElement().classList.contains('yo')).to.be.true
     expect(bdiv.getElement().classList.length).to.equal(1)
   })
 })
