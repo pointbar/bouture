@@ -87,7 +87,7 @@ describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
 })
 
 describe(`Bouture.div({'bloublou': 'yayo'})`, () => {
-  it('should ', () => {
+  it('should throw an exception when the attribute is not standard', () => {
     expect(() => Bouture.div({'bloublou': 'yoya'})).to.throw()
   })
 })
