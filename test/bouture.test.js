@@ -86,6 +86,12 @@ describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
   })
 })
 
+describe(`Bouture.div({'bloublou': 'yayo'})`, () => {
+  it('should ', () => {
+    expect(() => Bouture.div({'bloublou': 'yoya'})).to.throw()
+  })
+})
+
 describe(`Bouture.div({class: ['yo', 'ya']})`, () => {
   it('should create a div with 2 classes', () => {
     const bdiv = Bouture.div({class: ['yo', 'ya']})
