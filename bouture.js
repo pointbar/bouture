@@ -12,18 +12,17 @@ tagNames.forEach(tag => {
             .forEach(attribute => {
               (() => {
                 return {
-                  boolean: {
-                    true: () => element.setAttribute(attribute, ''),
-                    false: () => element.removeAttribute(attribute)
+                  boolean: () => {
+                    if (!!attributes[attribute]) { 
+                      element.setAttribute(attribute, '')
+                    } else if (element.hasAttribute(attribute)) {
+                      element.removeAttribute(attribute)
+                    }
                   },
-                  string: {
-                    true: () => element.setAttribute(attribute, attributes[attribute])
-                  },
-                  object: {
-                    true: () => element.setAttribute(attribute, attributes[attribute].join(' '))
-                  }
+                  string: () => element.setAttribute(attribute, attributes[attribute]),
+                  object: () => element.setAttribute(attribute, attributes[attribute].join(' '))
                 }
-              })()[typeof attributes[attribute]][!!attributes[attribute]]()
+              })()[typeof attributes[attribute]]()
             })
         }
         args.forEach(arg => append[typeof arg](element, arg))
