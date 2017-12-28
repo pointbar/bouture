@@ -17,8 +17,7 @@ tagNames.forEach(tag => {
                     false: () => element.removeAttribute(attribute)
                   },
                   string: {
-                    true: () => element.setAttribute(attribute, attributes[attribute]),
-                    false: () => element.setAttribute(attribute, '')
+                    true: () => element.setAttribute(attribute, attributes[attribute])
                   },
                   object: {
                     true: () => element.setAttribute(attribute, attributes[attribute].join(' '))
