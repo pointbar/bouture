@@ -10,7 +10,7 @@ tagNames.forEach(tag => {
           string: (element, text) => element.append(text),
           object: (element, attributes) => Object.keys(attributes)
             .forEach(attribute => {
-              function setAttribute () {
+              (() => {
                 return {
                   boolean: {
                     true: () => element.setAttribute(attribute, ''),
@@ -24,8 +24,7 @@ tagNames.forEach(tag => {
                     true: () => element.setAttribute(attribute, attributes[attribute].join(' '))
                   }
                 }
-              }
-              setAttribute()[typeof attributes[attribute]][!!attributes[attribute]]()
+              })()[typeof attributes[attribute]][!!attributes[attribute]]()
             })
         }
         args.forEach(arg => append[typeof arg](element, arg))
