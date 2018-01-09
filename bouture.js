@@ -13,10 +13,8 @@ tagNames.forEach(tag => {
               (() => {
                 return {
                   boolean: () => {
-                    if (!!attributes[attribute]) { 
+                    if (attributes[attribute]) {
                       element.setAttribute(attribute, '')
-                    } else if (element.hasAttribute(attribute)) {
-                      element.removeAttribute(attribute)
                     }
                   },
                   string: () => element.setAttribute(attribute, attributes[attribute]),
