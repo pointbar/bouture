@@ -6,25 +6,28 @@ tagNames.forEach(tag => {
     get: () => {
       const element = document.createElement(tag)
       function branche (...args) {
-        const append = {
-          string: (element, text) => element.append(text),
-          object: (element, attributes) => Object.keys(attributes)
-            .forEach(attributeName => {
-              const attributeValue = attributes[attributeName]
-              ;(() => {
-                return {
-                  boolean: () => {
-                    if (attributeValue) {
-                      element.setAttribute(attributeName, '')
-                    }
-                  },
-                  string: () => element.setAttribute(attributeName, attributeValue),
-                  object: () => element.setAttribute(attributeName, attributeValue.join(' '))
-                }
-              })()[typeof attributeValue]()
-            })
-        }
-        args.forEach(arg => append[typeof arg](element, arg))
+        args.forEach(arg => {
+          if (typeof arg === 'string') {
+            element.append(arg)
+          }
+          if (typeof arg === 'object') {
+            Object.keys(arg)
+              .forEach(attributeName => {
+                const attributeValue = arg[attributeName]
+                ;(() => {
+                  return {
+                    boolean: () => {
+                      if (attributeValue) {
+                        element.setAttribute(attributeName, '')
+                      }
+                    },
+                    string: () => element.setAttribute(attributeName, attributeValue),
+                    object: () => element.setAttribute(attributeName, attributeValue.join(' '))
+                  }
+                })()[typeof attributeValue]()
+              })
+          }
+        })
         return branche
       }
       branche.getElement = () => {
