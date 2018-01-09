@@ -9,18 +9,19 @@ tagNames.forEach(tag => {
         const append = {
           string: (element, text) => element.append(text),
           object: (element, attributes) => Object.keys(attributes)
-            .forEach(attribute => {
-              (() => {
+            .forEach(attributeName => {
+              const attributeValue = attributes[attributeName]
+              ;(() => {
                 return {
                   boolean: () => {
-                    if (attributes[attribute]) {
-                      element.setAttribute(attribute, '')
+                    if (attributeValue) {
+                      element.setAttribute(attributeName, '')
                     }
                   },
-                  string: () => element.setAttribute(attribute, attributes[attribute]),
-                  object: () => element.setAttribute(attribute, attributes[attribute].join(' '))
+                  string: () => element.setAttribute(attributeName, attributeValue),
+                  object: () => element.setAttribute(attributeName, attributeValue.join(' '))
                 }
-              })()[typeof attributes[attribute]]()
+              })()[typeof attributeValue]()
             })
         }
         args.forEach(arg => append[typeof arg](element, arg))
