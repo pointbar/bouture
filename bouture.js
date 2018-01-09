@@ -14,17 +14,15 @@ tagNames.forEach(tag => {
             Object.keys(arg)
               .forEach(attributeName => {
                 const attributeValue = arg[attributeName]
-                ;(() => {
-                  return {
-                    boolean: () => {
-                      if (attributeValue) {
-                        element.setAttribute(attributeName, '')
-                      }
-                    },
-                    string: () => element.setAttribute(attributeName, attributeValue),
-                    object: () => element.setAttribute(attributeName, attributeValue.join(' '))
-                  }
-                })()[typeof attributeValue]()
+                if (typeof attributeValue === 'boolean' && attributeValue) {
+                  element.setAttribute(attributeName, '')
+                }
+                if (typeof attributeValue === 'string') {
+                  element.setAttribute(attributeName, attributeValue)
+                }
+                if (typeof attributeValue === 'object') {
+                  element.setAttribute(attributeName, attributeValue.join(' '))
+                }
               })
           }
         })
