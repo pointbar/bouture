@@ -14,14 +14,20 @@ tagNames.forEach(tag => {
             Object.keys(arg)
               .forEach(attributeName => {
                 const attributeValue = arg[attributeName]
-                if (typeof attributeValue === 'boolean' && attributeValue) {
-                  element.setAttribute(attributeName, '')
-                }
-                if (typeof attributeValue === 'string') {
-                  element.setAttribute(attributeName, attributeValue)
-                }
-                if (typeof attributeValue === 'object') {
-                  element.setAttribute(attributeName, attributeValue.join(' '))
+                switch (typeof attributeValue) {
+                  case 'boolean':
+                    if (attributeValue) {
+                      element.setAttribute(attributeName, '')
+                    }
+                    break
+                  case 'string':
+                    element.setAttribute(attributeName, attributeValue)
+                    break
+                  case 'object':
+                    element.setAttribute(attributeName, attributeValue.join(' '))
+                    break
+                  default:
+                    // "undefined", "symbol" and null not handled by the current implementation.
                 }
               })
           }
