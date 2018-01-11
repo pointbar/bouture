@@ -29,6 +29,15 @@ describe(`Bouture.div('yo')`, () => {
   })
 })
 
+describe(`Bouture.div(13)`, () => {
+  it(`should create a div with text '13'`, () => {
+    const bdiv = Bouture.div(13)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('13')
+  })
+})
+
 describe('Bouture.a', () => {
   it('should create a <a>', () => {
     const a = Bouture.a

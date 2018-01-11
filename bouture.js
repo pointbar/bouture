@@ -7,7 +7,7 @@ tagNames.forEach(tag => {
       const element = document.createElement(tag)
       function branche (...args) {
         args.forEach(arg => {
-          if (typeof arg === 'string') {
+          if (typeof arg === 'string' || typeof arg === 'number') {
             element.append(arg)
           }
           if (typeof arg === 'object') {
@@ -20,6 +20,9 @@ tagNames.forEach(tag => {
                       element.setAttribute(attributeName, '')
                     }
                     break
+                  case 'number':
+                    element.setAttribute(attributeName, 13)
+                    break
                   case 'string':
                     element.setAttribute(attributeName, attributeValue)
                     break
@@ -27,7 +30,7 @@ tagNames.forEach(tag => {
                     element.setAttribute(attributeName, attributeValue.join(' '))
                     break
                   default:
-                    // "undefined", "symbol" and null not handled by the current implementation.
+                    // "undefined", "symbol" not handled by the current implementation.
                 }
               })
           }
