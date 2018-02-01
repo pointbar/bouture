@@ -113,6 +113,38 @@ describe('Bouture.div({hidden: false})', () => {
   })
 })
 
+describe('Bouture.div({hidden: undefined})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: undefined})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.div({hidden: null})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: null})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.div({hidden: Symbol()})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: Symbol('yo')})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.input({min: 12})', () => {
+  it(`should create an input element with min attribute set to '12'`, () => {
+    const bdiv = Bouture.input({min: 12})
+
+    expect(bdiv.getElement().hasAttribute('min')).to.equal('12')
+  })
+})
+
 describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
   it('should create a div with a data attribute', () => {
     const bdiv = Bouture.div({'data-bloublou': 'yoya'})
