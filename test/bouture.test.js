@@ -38,6 +38,33 @@ describe(`Bouture.div(13)`, () => {
   })
 })
 
+describe(`Bouture.div(NaN)`, () => {
+  it(`should create a div with empty string as text`, () => {
+    const bdiv = Bouture.div(NaN)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
+describe(`Bouture.div(undefined)`, () => {
+  it(`should create a div with empty string as text`, () => {
+    const bdiv = Bouture.div(undefined)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
+describe(`Bouture.div(null)`, () => {
+  it(`should create a div with empty string as text`, () => {
+    const bdiv = Bouture.div(null)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
 describe('Bouture.a', () => {
   it('should create a <a>', () => {
     const a = Bouture.a
