@@ -15,7 +15,7 @@ tagNames.forEach(tag => {
               !isNaN(arg) && element.append(arg)
               break
             case 'object':
-              Object.keys(arg)
+              (arg !== null) && Object.keys(arg)
                 .forEach(attributeName => {
                   const attributeValue = arg[attributeName]
                   switch (typeof attributeValue) {
