@@ -141,7 +141,7 @@ describe('Bouture.input({min: 12})', () => {
   it(`should create an input element with min attribute set to '12'`, () => {
     const bdiv = Bouture.input({min: 12})
 
-    expect(bdiv.getElement().hasAttribute('min')).to.equal('12')
+    expect(bdiv.getElement().getAttribute('min')).to.equal('12')
   })
 })
 
