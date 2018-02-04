@@ -7,32 +7,37 @@ tagNames.forEach(tag => {
       const element = document.createElement(tag)
       function branche (...args) {
         args.forEach(arg => {
-          if (typeof arg === 'string' || typeof arg === 'number') {
-            element.append(arg)
-          }
-          if (typeof arg === 'object') {
-            Object.keys(arg)
-              .forEach(attributeName => {
-                const attributeValue = arg[attributeName]
-                switch (typeof attributeValue) {
-                  case 'boolean':
-                    if (attributeValue) {
-                      element.setAttribute(attributeName, '')
-                    }
-                    break
-                  case 'number':
-                    element.setAttribute(attributeName, 13)
-                    break
-                  case 'string':
-                    element.setAttribute(attributeName, attributeValue)
-                    break
-                  case 'object':
-                    element.setAttribute(attributeName, attributeValue.join(' '))
-                    break
-                  default:
-                    // "undefined", "symbol" not handled by the current implementation.
-                }
-              })
+          switch (typeof arg) {
+            case 'string':
+              element.append(arg)
+              break
+            case 'number':
+              !isNaN(arg) && element.append(arg)
+              break
+            case 'object':
+              Object.keys(arg)
+                .forEach(attributeName => {
+                  const attributeValue = arg[attributeName]
+                  switch (typeof attributeValue) {
+                    case 'boolean':
+                      if (attributeValue) {
+                        element.setAttribute(attributeName, '')
+                      }
+                      break
+                    case 'number':
+                      element.setAttribute(attributeName, 13)
+                      break
+                    case 'string':
+                      element.setAttribute(attributeName, attributeValue)
+                      break
+                    case 'object':
+                      element.setAttribute(attributeName, attributeValue.join(' '))
+                      break
+                    default:
+                      // "undefined", "symbol" not handled by the current implementation.
+                  }
+                })
+              break
           }
         })
         return branche
