@@ -25,7 +25,7 @@ tagNames.forEach(tag => {
                       }
                       break
                     case 'number':
-                      element.setAttribute(attributeName, 13)
+                      element.setAttribute(attributeName, attributeValue)
                       break
                     case 'string':
                       element.setAttribute(attributeName, attributeValue)
