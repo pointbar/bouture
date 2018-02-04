@@ -15,7 +15,7 @@ tagNames.forEach(tag => {
               !isNaN(arg) && element.append(arg)
               break
             case 'object':
-              (arg !== null) && Object.keys(arg)
+              ;(arg !== null) && Object.keys(arg)
                 .forEach(attributeName => {
                   const attributeValue = arg[attributeName]
                   switch (typeof attributeValue) {
@@ -29,7 +29,8 @@ tagNames.forEach(tag => {
                       element.setAttribute(attributeName, attributeValue)
                       break
                     case 'object':
-                      element.setAttribute(attributeName, attributeValue.join(' '))
+                      ;(attributeValue !== null) && element
+                        .setAttribute(attributeName, attributeValue.join(' '))
                       break
                     default:
                       // "undefined", "symbol" not handled by the current implementation.
