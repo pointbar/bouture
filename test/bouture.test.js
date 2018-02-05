@@ -65,6 +65,15 @@ describe(`Bouture.div(null)`, () => {
   })
 })
 
+describe('Bouture.div(new Symbol())', () => {
+  it('should create a div with empty string as text', () => {
+    const bdiv = Bouture.div(Symbol('Oï'))
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
 describe('Bouture.a', () => {
   it('should create a <a>', () => {
     const a = Bouture.a
