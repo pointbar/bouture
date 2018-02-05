@@ -12,30 +12,34 @@ tagNames.forEach(tag => {
               element.append(arg)
               break
             case 'number':
-              !Number.isNaN(arg) && element.append(arg)
+              if (!Number.isNaN(arg)) element.append(arg)
               break
             case 'object':
-              ;(arg !== null) && Object.keys(arg)
-                .forEach(attributeName => {
-                  const attributeValue = arg[attributeName]
-                  switch (typeof attributeValue) {
-                    case 'boolean':
-                      attributeValue && element.setAttribute(attributeName, '')
-                      break
-                    case 'number':
-                      element.setAttribute(attributeName, attributeValue)
-                      break
-                    case 'string':
-                      element.setAttribute(attributeName, attributeValue)
-                      break
-                    case 'object':
-                      ;(attributeValue !== null) && element
-                        .setAttribute(attributeName, attributeValue.join(' '))
-                      break
-                    default:
-                      // "undefined", "symbol" not handled by the current implementation.
-                  }
-                })
+              if (arg !== null) {
+                Object.keys(arg)
+                  .forEach(attributeName => {
+                    const attributeValue = arg[attributeName]
+                    switch (typeof attributeValue) {
+                      case 'boolean':
+                        attributeValue && element.setAttribute(attributeName, '')
+                        break
+                      case 'number':
+                        element.setAttribute(attributeName, attributeValue)
+                        break
+                      case 'string':
+                        element.setAttribute(attributeName, attributeValue)
+                        break
+                      case 'object':
+                        if (attributeValue !== null) {
+                          element
+                            .setAttribute(attributeName, attributeValue.join(' '))
+                        }
+                        break
+                      default:
+                        // "undefined", "symbol" not handled by the current implementation.
+                    }
+                  })
+              }
               break
           }
         })
