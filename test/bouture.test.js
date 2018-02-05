@@ -145,6 +145,14 @@ describe('Bouture.input({min: 12})', () => {
   })
 })
 
+describe('Bouture.input({min: NaN})', () => {
+  it(`should create an input element with no min attribute`, () => {
+    const bdiv = Bouture.input({min: NaN})
+
+    expect(bdiv.getElement().hasAttribute('min')).to.be.false
+  })
+})
+
 describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
   it('should create a div with a data attribute', () => {
     const bdiv = Bouture.div({'data-bloublou': 'yoya'})

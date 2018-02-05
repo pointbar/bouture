@@ -21,10 +21,14 @@ tagNames.forEach(tag => {
                     const attributeValue = arg[attributeName]
                     switch (typeof attributeValue) {
                       case 'boolean':
-                        attributeValue && element.setAttribute(attributeName, '')
+                        if (attributeValue) {
+                          element.setAttribute(attributeName, '')
+                        }
                         break
                       case 'number':
-                        element.setAttribute(attributeName, attributeValue)
+                        if (!Number.isNaN(attributeValue)) {
+                          element.setAttribute(attributeName, attributeValue)
+                        }
                         break
                       case 'string':
                         element.setAttribute(attributeName, attributeValue)
