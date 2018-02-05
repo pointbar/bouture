@@ -35,12 +35,16 @@ tagNames.forEach(tag => {
                             .setAttribute(attributeName, attributeValue.join(' '))
                         }
                         break
-                      default:
-                        // "undefined", "symbol" not handled by the current implementation.
+                      case 'symbol':
+                        break
+                      case 'undefined':
+                        break
                     }
                   })
               }
               break
+            default:
+              // Other types not handle by cases : Symbol, boolean, undefined
           }
         })
         return branche
