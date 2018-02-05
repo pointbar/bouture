@@ -12,7 +12,7 @@ tagNames.forEach(tag => {
               element.append(arg)
               break
             case 'number':
-              !isNaN(arg) && element.append(arg)
+              !Number.isNaN(arg) && element.append(arg)
               break
             case 'object':
               ;(arg !== null) && Object.keys(arg)
