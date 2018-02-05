@@ -38,6 +38,15 @@ describe(`Bouture.div(13)`, () => {
   })
 })
 
+describe('Bouture.div(true)', () => {
+  it('should create a div with empty string as text', () => {
+    const bdiv = Bouture.div(true)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
 describe(`Bouture.div(NaN)`, () => {
   it(`should create a div with empty string as text`, () => {
     const bdiv = Bouture.div(NaN)
