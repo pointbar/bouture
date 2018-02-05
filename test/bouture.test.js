@@ -29,6 +29,42 @@ describe(`Bouture.div('yo')`, () => {
   })
 })
 
+describe(`Bouture.div(13)`, () => {
+  it(`should create a div with text '13'`, () => {
+    const bdiv = Bouture.div(13)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('13')
+  })
+})
+
+describe(`Bouture.div(NaN)`, () => {
+  it(`should create a div with empty string as text`, () => {
+    const bdiv = Bouture.div(NaN)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
+describe(`Bouture.div(undefined)`, () => {
+  it(`should create a div with empty string as text`, () => {
+    const bdiv = Bouture.div(undefined)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
+describe(`Bouture.div(null)`, () => {
+  it(`should create a div with empty string as text`, () => {
+    const bdiv = Bouture.div(null)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
 describe('Bouture.a', () => {
   it('should create a <a>', () => {
     const a = Bouture.a
@@ -50,5 +86,99 @@ describe('Bouture.bloublou', () => {
     const bloublou = Bouture.bloublou
 
     expect(bloublou).to.be.undefined
+  })
+})
+
+describe('Bouture.div({lang: "fr"})', () => {
+  it('should create a div with a lang attribute', () => {
+    const bdiv = Bouture.div({lang: 'fr'})
+
+    expect(bdiv.getElement().getAttribute('lang')).to.equal('fr')
+  })
+})
+
+describe('Bouture.div({hidden: true})', () => {
+  it('should create a div with a hidden attribute set to the empty string', () => {
+    const bdiv = Bouture.div({hidden: true})
+
+    expect(bdiv.getElement().getAttribute('hidden')).to.equal('')
+  })
+})
+
+describe('Bouture.div({hidden: false})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: false})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.div({hidden: undefined})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: undefined})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.div({hidden: null})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: null})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.div({hidden: Symbol()})', () => {
+  it('should create a div with no hidden attribute', () => {
+    const bdiv = Bouture.div({hidden: Symbol('yo')})
+
+    expect(bdiv.getElement().hasAttribute('hidden')).to.be.false
+  })
+})
+
+describe('Bouture.input({min: 12})', () => {
+  it(`should create an input element with min attribute set to '12'`, () => {
+    const bdiv = Bouture.input({min: 12})
+
+    expect(bdiv.getElement().getAttribute('min')).to.equal('12')
+  })
+})
+
+describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
+  it('should create a div with a data attribute', () => {
+    const bdiv = Bouture.div({'data-bloublou': 'yoya'})
+
+    expect(bdiv.getElement().getAttribute('data-bloublou')).to.equal('yoya')
+    expect(bdiv.getElement().dataset.bloublou).to.equal('yoya')
+  })
+})
+
+describe(`Bouture.div({class: ['yo', 'ya']})`, () => {
+  it('should create a div with 2 classes', () => {
+    const bdiv = Bouture.div({class: ['yo', 'ya']})
+
+    expect(bdiv.getElement().classList.contains('yo')).to.be.true
+    expect(bdiv.getElement().classList.contains('ya')).to.be.true
+    expect(bdiv.getElement().classList.length).to.equal(2)
+    expect(bdiv.getElement().getAttribute('class')).to.equal('yo ya')
+  })
+})
+
+describe(`Bouture.div({class: ['yo', undefined]})`, () => {
+  it('should create a div with 1 class', () => {
+    const bdiv = Bouture.div({class: ['yo', undefined]})
+
+    expect(bdiv.getElement().classList.contains('yo')).to.be.true
+    expect(bdiv.getElement().classList.length).to.equal(1)
+  })
+})
+
+describe(`Bouture.div({lang: 'en'}, 'to be yourself is all that you can do')`, () => {
+  it('should create a div with an attribute and text as content', () => {
+    const div = Bouture.div({lang: 'en'}, 'to be yourself is all that you can do').getElement()
+
+    expect(div.getAttribute('lang')).to.equal('en')
+    expect(div.textContent).to.equal('to be yourself is all that you can do')
   })
 })
