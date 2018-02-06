@@ -208,3 +208,28 @@ describe(`Bouture.div({lang: 'en'}, 'to be yourself is all that you can do')`, (
     expect(div.textContent).to.equal('to be yourself is all that you can do')
   })
 })
+
+describe(`Bouture.table.tbody`, () => {
+  it('should create a table with one tbody child', () => {
+    const table = Bouture.table.tbody.getElement()
+
+    expect(table.parentNode).to.equal(null)
+    expect(table.tagName.toLowerString()).to.equal('table')
+
+    expect(table.children.length).to.equal(1)
+    expect(table.children[0].tagName.toLowerString()).to.equal('tbody')
+  })
+})
+
+describe(`Bouture.ul( ['a', 'b', 'c'].map(Bouture.li) )`, () => {
+  it('should create a ul with 3 li children with different texts', () => {
+    const ul = Bouture.ul(['a', 'b', 'c'].map(Bouture.li)).getElement()
+
+    expect(ul.parentNode).to.equal(null)
+    expect(ul.tagName.toLowerString()).to.equal('ul')
+
+    expect(ul.children.length).to.equal(3)
+    expect(ul.children[0].tagName.toLowerString()).to.equal('li')
+    expect(ul.children[0].textContent).to.equal('a')
+  })
+})
