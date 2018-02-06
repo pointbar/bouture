@@ -38,6 +38,15 @@ describe(`Bouture.div(13)`, () => {
   })
 })
 
+describe('Bouture.div(true)', () => {
+  it('should create a div with empty string as text', () => {
+    const bdiv = Bouture.div(true)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
 describe(`Bouture.div(NaN)`, () => {
   it(`should create a div with empty string as text`, () => {
     const bdiv = Bouture.div(NaN)
@@ -59,6 +68,15 @@ describe(`Bouture.div(undefined)`, () => {
 describe(`Bouture.div(null)`, () => {
   it(`should create a div with empty string as text`, () => {
     const bdiv = Bouture.div(null)
+
+    expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
+    expect(bdiv.getElement().textContent).to.equal('')
+  })
+})
+
+describe('Bouture.div(new Symbol())', () => {
+  it('should create a div with empty string as text', () => {
+    const bdiv = Bouture.div(Symbol('Oï'))
 
     expect(bdiv.getElement()).to.be.an.instanceof(HTMLElement)
     expect(bdiv.getElement().textContent).to.equal('')
@@ -142,6 +160,14 @@ describe('Bouture.input({min: 12})', () => {
     const bdiv = Bouture.input({min: 12})
 
     expect(bdiv.getElement().getAttribute('min')).to.equal('12')
+  })
+})
+
+describe('Bouture.input({min: NaN})', () => {
+  it(`should create an input element with no min attribute`, () => {
+    const bdiv = Bouture.input({min: NaN})
+
+    expect(bdiv.getElement().hasAttribute('min')).to.be.false
   })
 })
 
