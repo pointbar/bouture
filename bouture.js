@@ -58,13 +58,14 @@ const tagNames = new Set(['a', 'abbr', 'address', 'area', 'article', 'aside', 'a
 
 tagNames.forEach(tag => {
   Object.defineProperty(Bouture, tag, {
-    value: (...args) => {
-      Bouture.tags = []
-      Bouture.tags.push({
+    value: function (...args) {
+      this.tags = []
+      this.tags.push({
         name: tag,
         args: args
       })
-      return Bouture
+      this.chain = true
+      return this
     }
   })
 })
