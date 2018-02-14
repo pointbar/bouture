@@ -1,8 +1,15 @@
 const Bouture = {
   tags: [],
   getElements: () => {
-    const tag = Bouture.tags[0]
-    return Bouture.completeElement(tag.name, tag.args)
+    let element = {}
+    Bouture.tags.forEach((tag, index) => {
+      if (!index) {
+        element = Bouture.completeElement(tag.name, tag.args)
+      } else {
+        element.append(Bouture.completeElement(tag.name, tag.args))
+      }
+    })
+    return element
   },
   completeElement: (tag, args) => {
     const element = document.createElement(tag)

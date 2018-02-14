@@ -1,8 +1,6 @@
 import {expect} from 'chai'
 import Bouture from '../bouture.js'
 
-console.log(Bouture.div('test').a('bloop'))
-
 /*
 describe('Bouture.div', () => {
   it('should create an object', () => {
@@ -211,13 +209,26 @@ describe(`Bouture.div({lang: 'en'}, 'to be yourself is all that you can do')`, (
     expect(div.textContent).to.equal('to be yourself is all that you can do')
   })
 })
+
+describe(`Bouture.table.tbody`, () => {
+  it('should create a table with one tbody child', () => {
+    const table = Bouture.table().tbody().getElements()
+
+    expect(table.parentNode).to.equal(null)
+    expect(table.tagName.toLowerCase()).to.equal('table')
+
+    expect(table.children.length).to.equal(1)
+    expect(table.children[0].tagName.toLowerCase()).to.equal('tbody')
+  })
+})
+
 /*
 describe(`Bouture.table.tbody`, () => {
   it('should create a table with one tbody child', () => {
     const table = Bouture.table.tbody.getElements()
 
     expect(table.parentNode).to.equal(null)
-    expect(table.tagName.toLowerString()).to.equal('table')
+    expect(table.tagName.toLowerCase()).to.equal('table')
 
     expect(table.children.length).to.equal(1)
     expect(table.children[0].tagName.toLowerString()).to.equal('tbody')
