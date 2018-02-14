@@ -1,6 +1,8 @@
 import {expect} from 'chai'
 import Bouture from '../bouture.js'
 
+console.log(Bouture.div('test').a('bloop'))
+
 /*
 describe('Bouture.div', () => {
   it('should create an object', () => {
