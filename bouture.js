@@ -1,6 +1,6 @@
 const Bouture = {
   tags: [],
-  getElements: () => {
+  getElement: () => {
     let element = {}
     Bouture.tags.forEach((tag, index) => {
       if (!index) {
