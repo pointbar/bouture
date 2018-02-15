@@ -1,7 +1,9 @@
 const Bouture = {
-  tags: [],
+  tags: new WeakMap(),
   getElement: () => {
     let element = {}
+    console.dir('this', this)
+    console.dir('Bouture', Bouture)
     Bouture.tags.forEach((tag, index) => {
       if (!index) {
         element = Bouture.completeElement(tag.name, tag.args)

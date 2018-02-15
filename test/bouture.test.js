@@ -224,19 +224,19 @@ describe(`Bouture.table().tbody()`, () => {
 
 describe(`Bouture.div().a(); Bouture.h1(); Bouture.div().div('').a('{href: 'http://bouture.com'}')`, () => {
   it('should create several Bouture and retrieve our children', () => {
-    const divA = Bouture.div().p()
+    const divP = Bouture.div().p()
     const h1 = Bouture.h1()
     const divDivA = Bouture.div().div('').a(`{href: 'http://bouture.com'}`)
 
-    expect(divA.getElement().tagName.toLowerCase()).to.equal('div')
+    expect(divP.getElement().tagName.toLowerCase()).to.equal('div')
     expect(h1.getElement().tagName.toLowerCase()).to.equal('h1')
     expect(divDivA.getElement().tagName.toLowerCase()).to.equal('div')
 
-    expect(divA.getElement().children.length).to.equal(1)
-    expect(h1.getElement().children.length).to.equal(1)
-    expect(divDivA.getElement().children.length).to.equal(2)
+    expect(divP.getElement().children.length).to.equal(1)
+    expect(h1.getElement().children.length).to.equal(0)
+    expect(divDivA.getElement().children.length).to.equal(1)
 
-    expect(divA.getElement().children[0].tagName.toLowerCase()).to.equal('p')
+    expect(divP.getElement().children[0].tagName.toLowerCase()).to.equal('p')
     expect(divDivA.getElement().children[1].tagName.toLowerCase()).to.equal('a')
   })
 })
