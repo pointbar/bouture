@@ -1,18 +1,4 @@
 const Bouture = {
-  tags: new WeakMap(),
-  getElement: () => {
-    let element = {}
-    console.dir('this', this)
-    console.dir('Bouture', Bouture)
-    Bouture.tags.forEach((tag, index) => {
-      if (!index) {
-        element = Bouture.completeElement(tag.name, tag.args)
-      } else {
-        element.append(Bouture.completeElement(tag.name, tag.args))
-      }
-    })
-    return element
-  },
   completeElement: (tag, args) => {
     const element = document.createElement(tag)
     args.forEach(arg => {
@@ -65,27 +51,34 @@ const Bouture = {
 }
 const tagNames = new Set(['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'script', 'section', 'select', 'slot', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr'])
 
-const Chained = Object.assign({}, Bouture)
-
 tagNames.forEach(tag => {
   Object.defineProperty(Bouture, tag, {
     value: function (...args) {
-      this.tags = []
-      this.tags.push({
-        name: tag,
-        args: args
-      })
-      return Chained
-    }
-  })
-})
+      let tags = [{name: tag, args: args}]
+      const Chained = {
+        getElement: function () {
+          let elements = []
+          tags.forEach((tag, index) => {
+            if (!index) {
+              elements = Bouture.completeElement(tag.name, tag.args)
+            } else {
+              elements.append(Bouture.completeElement(tag.name, tag.args))
+            }
+          })
+          return elements
+        }
+      }
 
-tagNames.forEach(tag => {
-  Object.defineProperty(Chained, tag, {
-    value: function (...args) {
-      Bouture.tags.push({
-        name: tag,
-        args: args
+      tagNames.forEach(tag => {
+        Object.defineProperty(Chained, tag, {
+          value: function (...args) {
+            tags.push({
+              name: tag,
+              args: args
+            })
+            return Chained
+          }
+        })
       })
       return Chained
     }

@@ -234,7 +234,7 @@ describe(`Bouture.div().a(); Bouture.h1(); Bouture.div().div('').a('{href: 'http
 
     expect(divP.getElement().children.length).to.equal(1)
     expect(h1.getElement().children.length).to.equal(0)
-    expect(divDivA.getElement().children.length).to.equal(1)
+    expect(divDivA.getElement().children.length).to.equal(2)
 
     expect(divP.getElement().children[0].tagName.toLowerCase()).to.equal('p')
     expect(divDivA.getElement().children[1].tagName.toLowerCase()).to.equal('a')
