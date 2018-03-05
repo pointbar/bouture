@@ -66,8 +66,7 @@ tagNames.forEach(tagName => {
     get: function () {
       let tags = [{name: tagName, content: []}]
       function branche (...args) {
-        const lastTag = tags.pop()
-        tags.push({name: lastTag.name, content: args})
+        tags[tags.length - 1] = { name: tags[tags.length - 1].name, content: args }
         return branche
       }
 
