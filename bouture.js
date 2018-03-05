@@ -64,10 +64,10 @@ const tagNames = new Set(['a', 'abbr', 'address', 'area', 'article', 'aside', 'a
 tagNames.forEach(tagName => {
   Object.defineProperty(Bouture, tagName, {
     get: function () {
-      let tags = [{name: tagName, args: []}]
+      let tags = [{name: tagName, content: []}]
       function branche (...args) {
         const lastTag = tags.pop()
-        tags.push({name: lastTag.name, args: args})
+        tags.push({name: lastTag.name, content: args})
         return branche
       }
 
@@ -76,9 +76,9 @@ tagNames.forEach(tagName => {
           let elements = []
           tags.forEach((tag, index) => {
             if (!index) {
-              elements = Bouture.completeElement(tag.name, tag.args)
+              elements = Bouture.completeElement(tag.name, tag.content)
             } else {
-              elements.append(Bouture.completeElement(tag.name, tag.args))
+              elements.append(Bouture.completeElement(tag.name, tag.content))
             }
           })
           return elements
@@ -88,7 +88,7 @@ tagNames.forEach(tagName => {
       tagNames.forEach(tagName => {
         Object.defineProperty(branche, tagName, {
           get: function () {
-            tags.push({name: tagName, args: []})
+            tags.push({name: tagName, content: []})
             return branche
           }
         })
