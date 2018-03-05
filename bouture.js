@@ -74,10 +74,11 @@ tagNames.forEach(tagName => {
         value: function () {
           let elements = []
           tags.forEach((tag, index) => {
+            const boutureElement = Bouture.completeElement(tag.name, tag.content)
             if (index === 0) {
-              elements = Bouture.completeElement(tag.name, tag.content)
+              elements = boutureElement
             } else {
-              elements.append(Bouture.completeElement(tag.name, tag.content))
+              elements.append(boutureElement)
             }
           })
           return elements
