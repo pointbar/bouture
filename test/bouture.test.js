@@ -1,7 +1,6 @@
 import {expect} from 'chai'
 import Bouture from '../bouture.js'
 
-/*
 describe('Bouture.div', () => {
   it('should create an object', () => {
     const b = Bouture.div
@@ -20,7 +19,7 @@ describe('Bouture.div.getElement()', () => {
     expect(b).to.be.an.instanceof(HTMLElement)
   })
 })
-*/
+
 describe(`Bouture.div('yo')`, () => {
   it(`should create a div with text 'yo'`, () => {
     const bdiv = Bouture.div('yo')
@@ -83,7 +82,7 @@ describe('Bouture.div(new Symbol())', () => {
     expect(bdiv.getElement().textContent).to.equal('')
   })
 })
-/*
+
 describe('Bouture.a', () => {
   it('should create a <a>', () => {
     const a = Bouture.a
@@ -107,7 +106,7 @@ describe('Bouture.bloublou', () => {
     expect(bloublou).to.be.undefined
   })
 })
-*/
+
 describe('Bouture.div({lang: "fr"})', () => {
   it('should create a div with a lang attribute', () => {
     const bdiv = Bouture.div({lang: 'fr'})
@@ -241,7 +240,6 @@ describe(`Bouture.div().a(); Bouture.h1(); Bouture.div().div('').a('{href: 'http
   })
 })
 
-/*
 describe(`Bouture.table.tbody`, () => {
   it('should create a table with one tbody child', () => {
     const table = Bouture.table.tbody.getElement()
@@ -250,20 +248,19 @@ describe(`Bouture.table.tbody`, () => {
     expect(table.tagName.toLowerCase()).to.equal('table')
 
     expect(table.children.length).to.equal(1)
-    expect(table.children[0].tagName.toLowerString()).to.equal('tbody')
+    expect(table.children[0].tagName.toLowerCase()).to.equal('tbody')
   })
 })
 
-describe(`Bouture.ul( ['a', 'b', 'c'].map(Bouture.li) )`, () => {
+describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
   it('should create a ul with 3 li children with different texts', () => {
-    const ul = Bouture.ul(['a', 'b', 'c'].map(Bouture.li)).getElement()
+    const ul = Bouture.ul(['a', 'b', 'c'].map(text => Bouture.li(text))).getElement()
 
     expect(ul.parentNode).to.equal(null)
-    expect(ul.tagName.toLowerString()).to.equal('ul')
+    expect(ul.tagName.toLowerCase()).to.equal('ul')
 
     expect(ul.children.length).to.equal(3)
-    expect(ul.children[0].tagName.toLowerString()).to.equal('li')
+    expect(ul.children[0].tagName.toLowerCase()).to.equal('li')
     expect(ul.children[0].textContent).to.equal('a')
   })
 })
-*/
