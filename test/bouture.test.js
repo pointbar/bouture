@@ -208,3 +208,59 @@ describe(`Bouture.div({lang: 'en'}, 'to be yourself is all that you can do')`, (
     expect(div.textContent).to.equal('to be yourself is all that you can do')
   })
 })
+
+describe(`Bouture.table().tbody()`, () => {
+  it('should create a table with one tbody child', () => {
+    const table = Bouture.table().tbody().getElement()
+
+    expect(table.parentNode).to.equal(null)
+    expect(table.tagName.toLowerCase()).to.equal('table')
+
+    expect(table.children.length).to.equal(1)
+    expect(table.children[0].tagName.toLowerCase()).to.equal('tbody')
+  })
+})
+
+describe(`Bouture.div().a(); Bouture.h1(); Bouture.div().div('').a('{href: 'http://bouture.com'}')`, () => {
+  it('should create several Bouture and retrieve our children', () => {
+    const divP = Bouture.div().p()
+    const h1 = Bouture.h1()
+    const divDivA = Bouture.div().div('').a(`{href: 'http://bouture.com'}`)
+
+    expect(divP.getElement().tagName.toLowerCase()).to.equal('div')
+    expect(h1.getElement().tagName.toLowerCase()).to.equal('h1')
+    expect(divDivA.getElement().tagName.toLowerCase()).to.equal('div')
+
+    expect(divP.getElement().children.length).to.equal(1)
+    expect(h1.getElement().children.length).to.equal(0)
+    expect(divDivA.getElement().children.length).to.equal(2)
+
+    expect(divP.getElement().children[0].tagName.toLowerCase()).to.equal('p')
+    expect(divDivA.getElement().children[1].tagName.toLowerCase()).to.equal('a')
+  })
+})
+
+describe(`Bouture.table.tbody`, () => {
+  it('should create a table with one tbody child', () => {
+    const table = Bouture.table.tbody.getElement()
+
+    expect(table.parentNode).to.equal(null)
+    expect(table.tagName.toLowerCase()).to.equal('table')
+
+    expect(table.children.length).to.equal(1)
+    expect(table.children[0].tagName.toLowerCase()).to.equal('tbody')
+  })
+})
+
+describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
+  it('should create a ul with 3 li children with different texts', () => {
+    const ul = Bouture.ul(['a', 'b', 'c'].map(text => Bouture.li(text))).getElement()
+
+    expect(ul.parentNode).to.equal(null)
+    expect(ul.tagName.toLowerCase()).to.equal('ul')
+
+    expect(ul.children.length).to.equal(3)
+    expect(ul.children[0].tagName.toLowerCase()).to.equal('li')
+    expect(ul.children[0].textContent).to.equal('a')
+  })
+})
