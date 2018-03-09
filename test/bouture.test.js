@@ -264,3 +264,11 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
     expect(ul.children[0].textContent).to.equal('a')
   })
 })
+
+describe(`Bouture.button({onClick: e => console.log('click', e)})`, () => {
+  it('should create a button and bind with an onclick event', () => {
+    const button = Bouture.button({onclick: e => console.log('click', e)}).getElement()
+
+    expect(typeof button.onclick).to.equal('function')
+  })
+})
