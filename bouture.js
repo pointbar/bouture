@@ -62,30 +62,35 @@ function completeElement (tag, args) {
         Object.keys(arg)
           .forEach(attributeName => {
             const attributeValue = arg[attributeName]
-            switch (typeof attributeValue) {
-              case 'boolean':
-                if (attributeValue) {
-                  element.setAttribute(attributeName, '')
-                }
-                break
-              case 'number':
-                if (!Number.isNaN(attributeValue)) {
+            // check for event binding
+            if (attributeName === 'onclick' && typeof attributeValue === 'function') {
+              element.onclick = attributeValue
+            } else {
+              switch (typeof attributeValue) {
+                case 'boolean':
+                  if (attributeValue) {
+                    element.setAttribute(attributeName, '')
+                  }
+                  break
+                case 'number':
+                  if (!Number.isNaN(attributeValue)) {
+                    element.setAttribute(attributeName, attributeValue)
+                  }
+                  break
+                case 'string':
                   element.setAttribute(attributeName, attributeValue)
-                }
-                break
-              case 'string':
-                element.setAttribute(attributeName, attributeValue)
-                break
-              case 'object':
-                if (attributeValue !== null) {
-                  element
-                    .setAttribute(attributeName, attributeValue.join(' '))
-                }
-                break
-              case 'symbol':
-                break
-              case 'undefined':
-                break
+                  break
+                case 'object':
+                  if (attributeValue !== null) {
+                    element
+                      .setAttribute(attributeName, attributeValue.join(' '))
+                  }
+                  break
+                case 'symbol':
+                  break
+                case 'undefined':
+                  break
+              }
             }
           })
         break
