@@ -64,8 +64,8 @@ function completeElement (tag, args) {
           .forEach(attributeName => {
             const attributeValue = arg[attributeName]
             // check for event binding
-            if (attributeName === 'onclick' && typeof attributeValue === 'function') {
-              element.onclick = attributeValue
+            if (eventNames.has(attributeName) && typeof attributeValue === 'function') {
+              element[attributeName] = attributeValue
             } else {
               switch (typeof attributeValue) {
                 case 'boolean':
