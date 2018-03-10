@@ -12,16 +12,15 @@ tagNames.forEach(tagName => {
 
       Object.defineProperty(branche, 'getElement', {
         value: function () {
-          let elements = []
-          tags.forEach((tag, index) => {
-            const boutureElement = completeElement(tag.name, tag.content)
-            if (index === 0) {
-              elements = boutureElement
-            } else {
-              elements.append(boutureElement)
-            }
+          let parent
+          let children
+          tags.reverse().forEach((tag, index) => {
+            const current = completeElement(tag.name, tag.content)
+            parent = current
+            children && parent.append(children)
+            children = parent
           })
-          return elements
+          return parent
         }
       })
 
