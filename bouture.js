@@ -12,7 +12,7 @@ tagNames.forEach(tagName => {
 
       branche.getElement = () => {
         let elements
-        tags.reverse().forEach((tag, index) => {
+        tags.reverse().forEach(tag => {
           const current = completeElement(tag.name, tag.content)
           elements && current.append(elements)
           elements = current
