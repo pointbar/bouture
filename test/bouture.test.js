@@ -265,11 +265,14 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
   })
 })
 
-describe(`Bouture.button({onClick: e => console.log('click', e)})`, () => {
+describe(`Bouture.button({onclick: e => { state = 37 }})`, () => {
   it('should create a button and bind with an onclick event', () => {
-    const button = Bouture.button({onclick: e => console.log('click', e)}).getElement()
+    var state = 0
+    const click = new MouseEvent('click')
+    const button = Bouture.button({onclick: e => { state = 37 }}).getElement()
+    button.dispatchEvent(click)
 
-    expect(typeof button.onclick).to.equal('function')
+    expect(state).to.equal(37)
   })
 })
 
@@ -291,12 +294,15 @@ describe(`Bouture.button({onair: e => console.log('On Air', e)})`, () => {
 
 describe(`Bouture.button({onceclick: 'Yo'`, () => {
   it('should create a button and bind an onclick event who can only used once', () => {
-    const button = Bouture.button({onceclick: e => e}).getElement()
+    var state = 18.5
+    const click = new MouseEvent('click')
+    const button = Bouture.button({onceclick: e => { state *= 2 }}).getElement()
+    button.dispatchEvent(click)
 
-    expect(typeof button.onclick).to.equal('function')
+    expect(state).to.equal(37)
 
-    button.onclick()
+    button.dispatchEvent(click)
 
-    expect(button.onclick).to.equal(null)
+    expect(state).to.equal(37)
   })
 })
