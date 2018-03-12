@@ -67,14 +67,8 @@ function completeElement (tag, args) {
             const eventName = attributeName.match(/^on/) && attributeName.replace(/^once|on/, '')
             if (eventNames.has(eventName)) {
               if (typeof attributeValue === 'function') {
-                if (attributeName.match(/^once/)) {
-                  element[`on${eventName}`] = () => {
-                    attributeValue()
-                    element[`on${eventName}`] = null
-                  }
-                } else {
-                  element[`on${eventName}`] = attributeValue
-                }
+                const options = attributeName.match(/^once/) ? {once: true} : {}
+                element.addEventListener(eventName, attributeValue, options)
               }
             } else {
               switch (typeof attributeValue) {
