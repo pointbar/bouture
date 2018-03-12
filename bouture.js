@@ -10,17 +10,15 @@ tagNames.forEach(tagName => {
         return branche
       }
 
-      Object.defineProperty(branche, 'getElement', {
-        value: function () {
-          let elements
-          tags.reverse().forEach((tag, index) => {
-            const current = completeElement(tag.name, tag.content)
-            elements && current.append(elements)
-            elements = current
-          })
-          return elements
-        }
-      })
+      branche.getElement = () => {
+        let elements
+        tags.reverse().forEach((tag, index) => {
+          const current = completeElement(tag.name, tag.content)
+          elements && current.append(elements)
+          elements = current
+        })
+        return elements
+      }
 
       tagNames.forEach(tagName => {
         Object.defineProperty(branche, tagName, {
