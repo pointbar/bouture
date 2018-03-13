@@ -64,7 +64,10 @@ function completeElement (tag, args) {
             const eventName = attributeName.match(/^on/) && attributeName.replace(/^once|on/, '')
             if (eventNames.has(eventName)) {
               if (typeof attributeValue === 'function') {
-                const options = attributeName.match(/^once/) ? {once: true} : {}
+                const options = {}
+                if (attributeName.match(/^once/)) {
+                  options.once = true
+                }
                 element.addEventListener(eventName, attributeValue, options)
               }
             } else {
