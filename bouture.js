@@ -14,7 +14,9 @@ tagNames.forEach(tagName => {
         let elements
         tags.reverse().forEach(tag => {
           const current = completeElement(tag.name, tag.content)
-          elements && current.append(elements)
+          if (elements) {
+            current.append(elements)
+          }
           elements = current
         })
         return elements
