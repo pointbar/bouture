@@ -233,22 +233,25 @@ describe(`Bouture.div().a(); Bouture.h1(); Bouture.div().div('').a('{href: 'http
 
     expect(divP.getElement().children.length).to.equal(1)
     expect(h1.getElement().children.length).to.equal(0)
-    expect(divDivA.getElement().children.length).to.equal(2)
+    expect(divDivA.getElement().children.length).to.equal(1)
 
     expect(divP.getElement().children[0].tagName.toLowerCase()).to.equal('p')
-    expect(divDivA.getElement().children[1].tagName.toLowerCase()).to.equal('a')
+    expect(divDivA.getElement().children[0].children[0].tagName.toLowerCase()).to.equal('a')
   })
 })
 
-describe(`Bouture.table.tbody`, () => {
-  it('should create a table with one tbody child', () => {
-    const table = Bouture.table.tbody.getElement()
+describe(`Bouture.table.tbody.tr.td`, () => {
+  it('should create a table with one tbody child, one tr child and one td child', () => {
+    const table = Bouture.table.tbody.tr.td.getElement()
 
     expect(table.parentNode).to.equal(null)
     expect(table.tagName.toLowerCase()).to.equal('table')
 
     expect(table.children.length).to.equal(1)
     expect(table.children[0].tagName.toLowerCase()).to.equal('tbody')
+    expect(table.children[0].children[0].tagName.toLowerCase()).to.equal('tr')
+    expect(table.children[0].children[0].children[0].tagName.toLowerCase()).to.equal('td')
+
   })
 })
 
