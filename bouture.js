@@ -67,10 +67,7 @@ function completeElement (tag, args) {
             }
             if (eventNames.has(eventName)) {
               if (typeof attributeValue === 'function') {
-                const options = {}
-                if (attributeName.match(/^once/)) {
-                  options.once = true
-                }
+                const options = {once: attributeName.match(/^once/)}
                 element.addEventListener(eventName, attributeValue, options)
               }
             } else {
