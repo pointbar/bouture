@@ -268,38 +268,38 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
   })
 })
 
-describe(`Bouture.button({onclick: e => { state = 37 }})`, () => {
+describe(`Bouture.button({onClick: e => { state = 37 }})`, () => {
   it('should create a button and bind with an onclick event', () => {
     var state = 0
     const click = new MouseEvent('click')
-    const button = Bouture.button({onclick: e => { state = 37 }}).getElement()
+    const button = Bouture.button({onClick: e => { state += 37 }}).getElement()
     button.dispatchEvent(click)
 
     expect(state).to.equal(37)
   })
 })
 
-describe(`Bouture.button({onclick: 'Yo'`, () => {
+describe(`Bouture.button({onClick: 'Yo'`, () => {
   it('should create a button without onclick attribute', () => {
-    const button = Bouture.button({onclick: 'Yo'}).getElement()
+    const button = Bouture.button({onClick: 'Yo'}).getElement()
 
-    expect(button.getAttribute('onclick')).to.equal(null)
+    expect(button.getAttribute('onClick')).to.equal(null)
   })
 })
 
-describe(`Bouture.button({onair: e => console.log('On Air', e)})`, () => {
+describe(`Bouture.button({onAir: e => console.log('On Air', e)})`, () => {
   it('should not bind with a wrong event', () => {
-    const button = Bouture.button({onclick: e => console.log('click', e)}).getElement()
+    const button = Bouture.button({onAir: e => console.log('onAir', e)}).getElement()
 
-    expect(typeof button.onair).to.equal('undefined')
+    expect(typeof button.onAir).to.equal('undefined')
   })
 })
 
-describe(`Bouture.button({onceclick: 'Yo'`, () => {
-  it('should create a button and bind an onclick event who can only used once', () => {
+describe(`Bouture.button({onceClick: 'Yo'`, () => {
+  it('should create a button and bind a click event who can only used once', () => {
     var state = 18.5
     const click = new MouseEvent('click')
-    const button = Bouture.button({onceclick: e => { state *= 2 }}).getElement()
+    const button = Bouture.button({onceClick: e => { state *= 2 }}).getElement()
     button.dispatchEvent(click)
 
     expect(state).to.equal(37)

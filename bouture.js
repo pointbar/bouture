@@ -61,7 +61,10 @@ function completeElement (tag, args) {
           .forEach(attributeName => {
             const attributeValue = arg[attributeName]
             // check for event binding
-            const eventName = attributeName.match(/^on/) && attributeName.replace(/^once|on/, '')
+            let eventName = null
+            if (attributeName.match(/^on[A-Z]|once[A-Z]/)) {
+              eventName = attributeName.replace(/^once|on/, '').toLowerCase()
+            }
             if (eventNames.has(eventName)) {
               if (typeof attributeValue === 'function') {
                 const options = {}
