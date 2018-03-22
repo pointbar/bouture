@@ -270,7 +270,7 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
 
 describe(`Bouture.button({onClick: e => { state = 37 }})`, () => {
   it('should create a button and bind with an onclick event', () => {
-    var state = 0
+    let state = 0
     const click = new MouseEvent('click')
     const button = Bouture.button({onClick: e => { state += 37 }}).getElement()
     button.dispatchEvent(click)
@@ -297,7 +297,7 @@ describe(`Bouture.button({onAir: e => console.log('On Air', e)})`, () => {
 
 describe(`Bouture.button({onceClick: 'Yo'`, () => {
   it('should create a button and bind a click event who can only used once', () => {
-    var state = 18.5
+    let state = 18.5
     const click = new MouseEvent('click')
     const button = Bouture.button({onceClick: e => { state *= 2 }}).getElement()
     button.dispatchEvent(click)
