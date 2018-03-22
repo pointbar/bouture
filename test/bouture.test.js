@@ -268,14 +268,14 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
   })
 })
 
-describe(`Bouture.button({onClick: e => { state = 37 }})`, () => {
+describe(`Bouture.button({onClick: e => { called = true }})`, () => {
   it('should create a button and bind with an onclick event', () => {
-    let state = 0
+    let called = true
     const click = new MouseEvent('click')
-    const button = Bouture.button({onClick: e => { state += 37 }}).getElement()
+    const button = Bouture.button({onClick: e => { called = true }}).getElement()
     button.dispatchEvent(click)
 
-    expect(state).to.equal(37)
+    expect(called).to.be.true
   })
 })
 
