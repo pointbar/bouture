@@ -279,22 +279,6 @@ describe(`Bouture.button({onClick: e => { called = true }})`, () => {
   })
 })
 
-describe(`Bouture.button({onClick: 'Yo'`, () => {
-  it('should create a button without onclick attribute', () => {
-    const button = Bouture.button({onClick: 'Yo'}).getElement()
-
-    expect(button.getAttribute('onClick')).to.equal(null)
-  })
-})
-
-describe(`Bouture.button({onAir: e => console.log('On Air', e)})`, () => {
-  it('should not bind with a wrong event', () => {
-    const button = Bouture.button({onAir: e => console.log('onAir', e)}).getElement()
-
-    expect(typeof button.onAir).to.equal('undefined')
-  })
-})
-
 describe(`Bouture.button({onceClick: 'Yo'`, () => {
   it('should create a button and bind a click event who can only used once', () => {
     let state = 18.5
