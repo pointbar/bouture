@@ -3,7 +3,7 @@ const tagNames = new Set(['a', 'abbr', 'address', 'area', 'article', 'aside', 'a
 
 tagNames.forEach(tagName => {
   Object.defineProperty(Bouture, tagName, {
-    get: function () {
+    get: () => {
       let tags = [{name: tagName, content: []}]
       function branche (...args) {
         tags[tags.length - 1] = { name: tags[tags.length - 1].name, content: args }
@@ -24,7 +24,7 @@ tagNames.forEach(tagName => {
 
       tagNames.forEach(tagName => {
         Object.defineProperty(branche, tagName, {
-          get: function () {
+          get: () => {
             tags.push({name: tagName, content: []})
             return branche
           }
