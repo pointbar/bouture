@@ -268,7 +268,7 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
   })
 })
 
-describe(`Bouture('custom-element', Bouture('paper-badge', {label: '3'}))`, () => {
+describe(`Bouture('custom-element', Bouture('paper-badge'))`, () => {
   it('should create a element', () => {
     const customElt = Bouture('custom-element', Bouture('paper-badge', {label: '3'}))
 
@@ -276,7 +276,7 @@ describe(`Bouture('custom-element', Bouture('paper-badge', {label: '3'}))`, () =
   })
 })
 
-describe(`Bouture('custom-element', Bouture('paper-badge', {label: '3'})).getElement()`, () => {
+describe(`Bouture('custom-element', Bouture('paper-badge')).getElement()`, () => {
   it('should return an actual DOM node', () => {
     const customElt = Bouture('custom-element', Bouture('paper-badge', {label: '3'})).getElement()
 
