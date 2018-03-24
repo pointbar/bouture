@@ -267,3 +267,19 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
     expect(ul.children[0].textContent).to.equal('a')
   })
 })
+
+describe(`Bouture('custom-element', Bouture('paper-badge', {label: '3'}))`, () => {
+  it('should create a element', () => {
+    const customElt = Bouture('custom-element', Bouture('paper-badge', {label: '3'}))
+
+    expect(Object(customElt)).to.equal(customElt)
+  })
+})
+
+describe(`Bouture('custom-element', Bouture('paper-badge', {label: '3'})).getElement()`, () => {
+  it('should return an actual DOM node', () => {
+    const customElt = Bouture('custom-element', Bouture('paper-badge', {label: '3'})).getElement()
+
+    expect(customElt).to.be.an.instanceof(HTMLElement)
+  })
+})
