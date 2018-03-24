@@ -58,50 +58,63 @@ function completeElement (tag, args) {
           break
         }
         Object.keys(arg)
-          .forEach(attributeName => {
-            const attributeValue = arg[attributeName]
-            // check for event binding
+          .forEach(keyName => {
             function getEventName (name) {
-              return attributeName.replace(/^once|on/, '').toLowerCase()
+              return name.replace(/^once|on/, '').toLowerCase()
             }
 
             function isEvent (name) {
-              if (attributeName.match(/^on[A-Z]|once[A-Z]/)) {
-                return EVENTNAMES.has(getEventName(attributeName))
+              if (name.match(/^on[A-Z]|once[A-Z]/)) {
+                return EVENTNAMES.has(getEventName(name))
               }
             }
 
-            if (isEvent(attributeName)) {
-              if (typeof attributeValue === 'function') {
-                const options = {once: attributeName.match(/^once/)}
-                element.addEventListener(getEventName(attributeName), attributeValue, options)
+            function getEventOrAttributeType (name) {
+              if (isEvent(name)) {
+                return 'event'
+              } else {
+                return 'attribute'
               }
-            } else {
-              switch (typeof attributeValue) {
-                case 'boolean':
-                  if (attributeValue) {
-                    element.setAttribute(attributeName, '')
-                  }
-                  break
-                case 'number':
-                  if (!Number.isNaN(attributeValue)) {
+            }
+
+            switch (getEventOrAttributeType(keyName)) {
+              case 'attribute':
+                const attributeValue = arg[keyName]
+                const attributeName = keyName
+                switch (typeof attributeValue) {
+                  case 'boolean':
+                    if (attributeValue) {
+                      element.setAttribute(attributeName, '')
+                    }
+                    break
+                  case 'number':
+                    if (!Number.isNaN(attributeValue)) {
+                      element.setAttribute(attributeName, attributeValue)
+                    }
+                    break
+                  case 'string':
                     element.setAttribute(attributeName, attributeValue)
-                  }
-                  break
-                case 'string':
-                  element.setAttribute(attributeName, attributeValue)
-                  break
-                case 'object':
-                  if (attributeValue !== null) {
-                    element
-                      .setAttribute(attributeName, attributeValue.join(' '))
-                  }
-                  break
-                case 'symbol':
-                  break
-                case 'undefined':
-                  break
-              }
+                    break
+                  case 'object':
+                    if (attributeValue !== null) {
+                      element
+                        .setAttribute(attributeName, attributeValue.join(' '))
+                    }
+                    break
+                  case 'symbol':
+                    break
+                  case 'undefined':
+                    break
+                }
+                break
+              case 'event':
+                const eventName = getEventName(keyName)
+                const eventValue = arg[keyName]
+                if (typeof eventValue === 'function') {
+                  const options = {once: keyName.match(/^once/)}
+                  element.addEventListener(eventName, eventValue, options)
+                }
+                break
             }
           })
         break
