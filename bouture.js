@@ -1,5 +1,21 @@
-const Bouture = {}
 const tagNames = new Set(['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'script', 'section', 'select', 'slot', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr'])
+const customElementz = []
+
+const Bouture = (...args) => {
+  customElementz.push(args)
+  // 'custom-element' support only one custom element
+  if (args[0] === 'custom-element' && args.length === 2) {
+    const customElement = customElementz.slice(-2, -1)[0]
+    customElementz.length = 0
+    return {
+      getElement: () => {
+        const tag = {name: customElement[0], content: [customElement[1]]}
+        return completeElement(tag.name, tag.content)
+      }
+    }
+  }
+  return undefined
+}
 
 tagNames.forEach(tagName => {
   Object.defineProperty(Bouture, tagName, {
