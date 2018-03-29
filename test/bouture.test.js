@@ -267,3 +267,44 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
     expect(ul.children[0].textContent).to.equal('a')
   })
 })
+
+describe(`Bouture.button({onClick: e => { called = true }})`, () => {
+  it('should create a button and bind with an onclick event', () => {
+    let called = false
+    const click = new MouseEvent('click')
+    const button = Bouture.button({onClick: e => { called = true }}).getElement()
+    button.dispatchEvent(click)
+
+    expect(called).to.be.true
+  })
+})
+
+describe(`Bouture.button({onClick: e => { state *= 2 }})`, () => {
+  it('should create a button and bind a click event who can used twice', () => {
+    let state = 9.25
+    const click = new MouseEvent('click')
+    const button = Bouture.button({onClick: e => { state *= 2 }}).getElement()
+    button.dispatchEvent(click)
+
+    expect(state).to.equal(18.5)
+
+    button.dispatchEvent(click)
+
+    expect(state).to.equal(37)
+  })
+})
+
+describe(`Bouture.button({onceClick: e => { state *= 2 }})`, () => {
+  it('should create a button and bind a click event who can only used once', () => {
+    let state = 18.5
+    const click = new MouseEvent('click')
+    const button = Bouture.button({onceClick: e => { state *= 2 }}).getElement()
+    button.dispatchEvent(click)
+
+    expect(state).to.equal(37)
+
+    button.dispatchEvent(click)
+
+    expect(state).to.equal(37)
+  })
+})
