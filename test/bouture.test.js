@@ -268,7 +268,7 @@ describe(`Bouture.ul( ['a', 'b', 'c'].map(text => Bouture.li(text)))`, () => {
   })
 })
 
-describe(`Bouture.button({onClick: e => { called = false }})`, () => {
+describe(`Bouture.button({onClick: e => { called = true }})`, () => {
   it('should create a button and bind with an onclick event', () => {
     let called = false
     const click = new MouseEvent('click')
@@ -279,7 +279,7 @@ describe(`Bouture.button({onClick: e => { called = false }})`, () => {
   })
 })
 
-describe(`Bouture.button({onceClick: 'Yo'`, () => {
+describe(`Bouture.button({onceClick: e => { state *= 2 }})`, () => {
   it('should create a button and bind a click event who can only used once', () => {
     let state = 18.5
     const click = new MouseEvent('click')
