@@ -69,52 +69,41 @@ function completeElement (tag, args) {
               }
             }
 
-            function getEventOrAttributeType (name) {
-              if (isEvent(name)) {
-                return 'event'
-              } else {
-                return 'attribute'
+            if (isEvent(keyName)) {
+              const eventName = getEventName(keyName)
+              const eventValue = arg[keyName]
+              if (typeof eventValue === 'function') {
+                const options = {once: keyName.match(/^once/)}
+                element.addEventListener(eventName, eventValue, options)
               }
-            }
-
-            switch (getEventOrAttributeType(keyName)) {
-              case 'attribute':
-                const attributeValue = arg[keyName]
-                const attributeName = keyName
-                switch (typeof attributeValue) {
-                  case 'boolean':
-                    if (attributeValue) {
-                      element.setAttribute(attributeName, '')
-                    }
-                    break
-                  case 'number':
-                    if (!Number.isNaN(attributeValue)) {
-                      element.setAttribute(attributeName, attributeValue)
-                    }
-                    break
-                  case 'string':
+            } else {
+              const attributeValue = arg[keyName]
+              const attributeName = keyName
+              switch (typeof attributeValue) {
+                case 'boolean':
+                  if (attributeValue) {
+                    element.setAttribute(attributeName, '')
+                  }
+                  break
+                case 'number':
+                  if (!Number.isNaN(attributeValue)) {
                     element.setAttribute(attributeName, attributeValue)
-                    break
-                  case 'object':
-                    if (attributeValue !== null) {
-                      element
-                        .setAttribute(attributeName, attributeValue.join(' '))
-                    }
-                    break
-                  case 'symbol':
-                    break
-                  case 'undefined':
-                    break
-                }
-                break
-              case 'event':
-                const eventName = getEventName(keyName)
-                const eventValue = arg[keyName]
-                if (typeof eventValue === 'function') {
-                  const options = {once: keyName.match(/^once/)}
-                  element.addEventListener(eventName, eventValue, options)
-                }
-                break
+                  }
+                  break
+                case 'string':
+                  element.setAttribute(attributeName, attributeValue)
+                  break
+                case 'object':
+                  if (attributeValue !== null) {
+                    element
+                      .setAttribute(attributeName, attributeValue.join(' '))
+                  }
+                  break
+                case 'symbol':
+                  break
+                case 'undefined':
+                  break
+              }
             }
           })
         break
