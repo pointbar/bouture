@@ -279,6 +279,21 @@ describe(`Bouture.button({onClick: e => { called = true }})`, () => {
   })
 })
 
+describe(`Bouture.button({onClick: e => { state *= 2 }})`, () => {
+  it('should create a button and bind a click event who can used twice', () => {
+    let state = 9.25
+    const click = new MouseEvent('click')
+    const button = Bouture.button({onClick: e => { state *= 2 }}).getElement()
+    button.dispatchEvent(click)
+
+    expect(state).to.equal(18.5)
+
+    button.dispatchEvent(click)
+
+    expect(state).to.equal(37)
+  })
+})
+
 describe(`Bouture.button({onceClick: e => { state *= 2 }})`, () => {
   it('should create a button and bind a click event who can only used once', () => {
     let state = 18.5
