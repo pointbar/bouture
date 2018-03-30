@@ -181,7 +181,7 @@ describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
 })
 
 describe(`Bouture.div({'data-BABA': 'Niet'})`, () => {
-  it(`should not create a div with a wrong data attribute`, () => {
+  it(`should not create a wrong data attribute`, () => {
     const bdiv = Bouture.div({'data-BABA': 'Niet'})
 
     expect(bdiv.getElement().hasAttribute('data-BABA')).to.be.false
@@ -189,10 +189,18 @@ describe(`Bouture.div({'data-BABA': 'Niet'})`, () => {
 })
 
 describe(`Bouture.div({'vegan': 'Niet'})`, () => {
-  it(`should not create a div with a wrong attribute`, () => {
+  it(`should not create a wrong attribute`, () => {
     const bdiv = Bouture.div({'vegan': 'Niet'})
 
     expect(bdiv.getElement().hasAttribute('vegan')).to.be.false
+  })
+})
+
+describe(`Bouture.audio({'align': 'left'})`, () => {
+  it(`should not create a specific attribute for an inappropriate tag`, () => {
+    const bdiv = Bouture.audio({'align': 'left'})
+
+    expect(bdiv.getElement().hasAttribute('align')).to.be.false
   })
 })
 
