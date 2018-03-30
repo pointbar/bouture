@@ -63,10 +63,22 @@ function completeElement (tag, args) {
               return name.replace(/^once|on/, '').toLowerCase()
             }
 
+            function isAttribute (name) {
+              if (name.match(/^data/)) {
+                return name.match(/^data-([a-z]|[0-9]|-)*$/)
+              } else {
+                return true
+              }
+            }
+
             function isEvent (name) {
               if (name.match(/^on[A-Z]|once[A-Z]/)) {
                 return EVENTNAMES.has(getEventName(name))
               }
+            }
+
+            if (! isAttribute(keyName)) {
+              return
             }
 
             if (isEvent(keyName)) {

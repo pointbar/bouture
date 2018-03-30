@@ -180,6 +180,14 @@ describe(`Bouture.div({'data-bloublou': 'yoya'})`, () => {
   })
 })
 
+describe(`Bouture.div({'data-BABA': 'Niet'})`, () => {
+  it(`should not create a div with a wrong data attribute`, () => {
+    const bdiv = Bouture.div({'data-BABA': 'yoya'})
+
+    expect(bdiv.getElement().hasAttribute('data-BABA')).to.be.false
+  })
+})
+
 describe(`Bouture.div({class: ['yo', 'ya']})`, () => {
   it('should create a div with 2 classes', () => {
     const bdiv = Bouture.div({class: ['yo', 'ya']})
