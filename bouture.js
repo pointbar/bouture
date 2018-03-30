@@ -1,6 +1,7 @@
 const Bouture = {}
 const TAGNAMES = new Set(['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'script', 'section', 'select', 'slot', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr'])
 const EVENTNAMES = new Set(['abort', 'blur', 'error', 'focus', 'cancel', 'canplay', 'canplaythrough', 'change', 'click', 'close', 'contextmenu', 'cuechange', 'dblclick', 'drag', 'dragend', 'dragenter', 'dragexit', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'emptied', 'ended', 'gotpointercapture', 'input', 'invalid', 'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadend', 'loadstart', 'lostpointercapture', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'mousewheel', 'wheel', 'pause', 'play', 'playing', 'pointerdown', 'pointermove', 'pointerup', 'pointercancel', 'pointerover', 'pointerout', 'pointerenter', 'pointerleave', 'progress', 'ratechange', 'reset', 'scroll', 'seeked', 'seeking', 'select', 'selectstart', 'selectionchange', 'show', 'stalled', 'submit', 'suspend', 'timeupdate', 'volumechange', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitioncancel', 'transitionend', 'waiting'])
+const ATTRIBUTENAMES = {accesskey: '*', class: '*', contenteditable: '*', contextmenu: '*', dir: '*', draggable: '*', dropzone: '*', hidden: '*', id: '*', lang: '*', spellcheck: '*', style: '*', tabindex: '*', title: '*', translate: '*'}
 
 TAGNAMES.forEach(tagName => {
   Object.defineProperty(Bouture, tagName, {
@@ -66,19 +67,16 @@ function completeElement (tag, args) {
             function isAttribute (name) {
               if (name.match(/^data/)) {
                 return name.match(/^data-([a-z]|[0-9]|-)*$/)
-              } else {
+              } else if (ATTRIBUTENAMES[name] === '*') {
                 return true
               }
+              return false
             }
 
             function isEvent (name) {
               if (name.match(/^on[A-Z]|once[A-Z]/)) {
                 return EVENTNAMES.has(getEventName(name))
               }
-            }
-
-            if (! isAttribute(keyName)) {
-              return
             }
 
             if (isEvent(keyName)) {
@@ -88,7 +86,7 @@ function completeElement (tag, args) {
                 const options = {once: keyName.match(/^once/)}
                 element.addEventListener(eventName, eventValue, options)
               }
-            } else {
+            } else if (isAttribute(keyName)) {
               const attributeValue = arg[keyName]
               const attributeName = keyName
               switch (typeof attributeValue) {
