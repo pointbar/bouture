@@ -46,7 +46,7 @@ document.body.append(h1.getElement())
 
 ## How to use Bouture?
 
-By example with [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) the script in *html* file.
+By example, use [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) in your *html* file.
 
 ````js
 <script type=module>
@@ -56,6 +56,19 @@ By example with [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript
   document.querySelector('body').append(html.getElement())
 </script>
 ````
+
+You can also install *Bouture* with *npm*:
+
+````js
+$ npm install davidbruant/bouture
+````
+
+and playing with something like that:
+
+````js
+import Bouture from './node_modules/bouture/bouture.js'
+````
+
 
 ## License
 
