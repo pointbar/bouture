@@ -10,14 +10,14 @@ This lib provides an API to create easily DOM branches to be appended. Only crea
 
 ````js
 // Creating element
-const div = Bouture.div;
+const div = Bouture.div
 
 // With text
-const h1 = Bouture.h1('Best lib of all times');
-const h2 = Bouture.h2('subheading'); 
+const h1 = Bouture.h1('Best lib of all times')
+const h2 = Bouture.h2('subheading')
 
 // Attribute
-const input = Bouture.input({type: 'tel'});
+const input = Bouture.input({type: 'tel'})
 
 // Classes
 const multiClassDiv = Bouture.div({class: ['yo', 'ya']})
@@ -26,23 +26,40 @@ const multiClassDiv = Bouture.div({class: ['yo', 'ya']})
 const a = Bouture.a({href: 'https://github.com/DavidBruant/bouture'}, 'bouture.js');
 
 // Nested creation with one child
-//const table = Bouture.table.tbody.tr;
+const table = Bouture.table.tbody.tr
 
 // Nested creation with children
-//const ul = Bouture.ul( ['abra', 'kadabra', 'alakazam'].map(Bouture.li) );
+const ul = Bouture.ul( ['abra', 'kadabra', 'alakazam'].map(Bouture.li) )
 
 // Events
-//const b1 = Bouture.button({
-//  onClick: e => console.log('click', e),
-//  onceMousedown: e => console.log('mousedown', e),
-//})
+const b1 = Bouture.button({
+  onClick: e => console.log('click', e),
+  onceMousedown: e => console.log('mousedown', e),
+})
 
 // Custom Element
-//const ce = Bouture('custom-element', Bouture('paper-badge', {label: '3'}))
+const ce = Bouture('custom-element', Bouture('paper-badge', {label: '3'}))
 
 // append to actual DOM
-document.body.append(h1.getElement());
+document.body.append(h1.getElement())
 ````
+
+## How to use Bouture?
+
+By example with [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) the script in *html* file.
+
+````js
+<script type=module>
+  import Bouture from 'https://cdn.rawgit.com/DavidBruant/bouture/13cb6c68/bouture.js'
+
+  const html = Bouture.ul(['abra', 'kadabra', 'alakazam'].map(Bouture.li))
+  document.querySelector('body').append(html.getElement())
+</script>
+````
+
+## License
+
+This project is licensed under the MIT License - see the [License](./LICENSE) file for details.
 
 ## Cross-cutting concerns
 
