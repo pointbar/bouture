@@ -72,7 +72,7 @@ import Bouture from './node_modules/bouture/bouture.js'
 
 ## License
 
-This project is licensed under the MIT License - see the [License](./LICENSE) file for details.
+This project is licensed under the CC0 License - see the [License](./LICENSE) file for details.
 
 ## Cross-cutting concerns
 
