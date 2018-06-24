@@ -48,7 +48,7 @@ document.body.append(h1.getElement())
 
 By example, use [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) in your *html* file.
 
-````js
+````html
 <script type=module>
   import Bouture from 'https://cdn.rawgit.com/DavidBruant/bouture/13cb6c68/bouture.js'
 
@@ -78,5 +78,3 @@ This project is licensed under the MIT License - see the [License](./LICENSE) fi
 
 - Any usage that is not documented should throw or return undefined
 - Browser compatibility: Edge
-
-
